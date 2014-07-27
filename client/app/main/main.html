@@ -1,0 +1,76 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>govTrackr</h1>
+    <p class="lead">Search the U.S. Federal Register Database</p>
+<!--     <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
+  </div>
+</header>
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Features:</h1>
+      <ul class="nav nav-tabs nav-stacked col-lg-6" ng-repeat="thing in awesomeThings">
+        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div ng-switch on="myData.switch">
+        <div ng-switch-when="1">Shown when switch is 1</div>
+        <div ng-switch-when="2">Shown when switch is 2</div>
+        <div ng-switch-default>Shown when switch is anything else than 1 and 2</div>
+    </div> -->
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Search:</h1>
+        <form ng-submit="startSearch()" role="form">
+          <div class="form-group">
+            <label for="searchTerm">Enter a term:</label>
+            <input type="text" ng-model="searchTerm"  size="30" class="form-control" type="search" placeholder="Search The Federal Register">
+      <br>
+                  <span  class="nullable">
+            <label for="searchTerm">Choose an agency to search:</label>                    
+    <select ng-model="selectedAgency" ng-options="agency.url as agency.name for agency in agencies"  class="form-control">
+      <option value="">-- Choose An Agency --</option>
+    </select> {{selectedAgency | json}} 
+  </span>            
+  <br><input class="btn-primary" type="submit" value="Search">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <span ng-show="searchPerformed"><h2 class="page-header">Results: </span><span><h4>{{searchResults.description}}</h4></span></h2>
+    </div>
+  </div>
+
+
+
+  <ul ng-repeat="result in searchResults.results">
+    <li>
+      <h3>{{result.title}}</h3>
+      <h3>{{result.name}}</h3>
+      <p>{{result.abstract}}</p>
+      <p>Type: {{result.type}} <a ng-href="{{result.pdf_url}}">View PDF</a></p>
+    </li>
+  </ul>
+
+<footer class="footer">
+  <div class="container">
+      <p><a href="http://DaveMax.com">Dave Max</a> | <a href="https://twitter.com/Dave_Max">@Dave_Max</a>
+      </p>
+  </div>
+</footer>
