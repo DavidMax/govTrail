@@ -62,11 +62,11 @@
 
   <ul ng-repeat="result in searchResults.results">
     <li>
-      <h3>{{result.title}}</h3>
+      <h3><a ng-href="{{result.html_url}}">{{result.title}}</a></h3>
       <h3>{{result.name}}</h3>
       <p>{{result.abstract}}</p>
-      <p>Type: {{result.type}} | <a ng-href="{{result.pdf_url}}">View PDF</a></p>
-      <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.pdf_url}}" data-via="govTrackr" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
+      <p>Type: {{result.type}} | <a ng-href="{{result.html_url}}">View on the Web</a> | <a ng-href="{{result.pdf_url}}">View PDF</a> | 
+      <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrackr" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
       </span>
     </li>
