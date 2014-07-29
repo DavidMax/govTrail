@@ -10,10 +10,11 @@ describe('Controller: MainCtrl', function () {
       $httpBackend;
 
   // Initialize the controller and a mock scope
+
   beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
+     $httpBackend = _$httpBackend_;
     $httpBackend.expectJSONP('https://www.federalregister.gov/api/v1/agencies?callback=JSON_CALLBACK');
- //     .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express'])
+     // .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
 // move semicolon down after adding back respond
 
     scope = $rootScope.$new();
@@ -26,4 +27,4 @@ describe('Controller: MainCtrl', function () {
   //   $httpBackend.flush();
   //   expect(scope.awesomeThings.length).toBe(4);
   // });
-});
+ });

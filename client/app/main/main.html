@@ -39,7 +39,8 @@
             <label for="searchTerm">Choose an agency to search:</label>                    
     <select ng-model="selectedAgency" ng-options="agency.url as agency.name for agency in agencies"  class="form-control">
       <option value="">-- Choose An Agency --</option>
-    </select> {{selectedAgency | json}} 
+    </select>
+    <!--  {{selectedAgency | json}}  -->
   </span>            
   <br><input class="btn-primary" type="submit" value="Search">
         </div>
@@ -64,7 +65,10 @@
       <h3>{{result.title}}</h3>
       <h3>{{result.name}}</h3>
       <p>{{result.abstract}}</p>
-      <p>Type: {{result.type}} <a ng-href="{{result.pdf_url}}">View PDF</a></p>
+      <p>Type: {{result.type}} | <a ng-href="{{result.pdf_url}}">View PDF</a></p>
+      <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.pdf_url}}" data-via="govTrackr" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </span>
     </li>
   </ul>
 
