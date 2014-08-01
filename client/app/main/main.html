@@ -51,30 +51,38 @@
 
 
 
-<div class="container">
+<div class="container" ng-show="searchPerformed">
+  
   <div class="row">
+
     <div class="col-lg-12">
-      <span ng-show="searchPerformed"><h2 class="page-header">Results: </span><span><h4>{{searchResults.description}}</h4></span></h2>
+      <span><h2 class="page-header">Results: </span><span><h4>{{searchResults.description}}</h4></span></h2>
     </div>
-  </div>
-
-
 
   <ul ng-repeat="result in searchResults.results">
     <li>
-      <h3><a ng-href="{{result.html_url}}">{{result.title}}</a></h3>
-      <h3>{{result.name}}</h3>
+      <h5><a ng-href="{{result.html_url}}">{{result.title}}</a></h5>
       <p>{{result.abstract}}</p>
       <p>Type: {{result.type}} | <a ng-href="{{result.html_url}}">View on the Web</a> | <a ng-href="{{result.pdf_url}}">View PDF</a> | 
       <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrackr" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
       </span>
     </li>
   </ul>
 
+    <div class="simplePagination">
+      <h4><a ng-click="nextPage()">Next Page</a></h4>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
 <footer class="footer">
   <div class="container">
-      <p><a href="http://DaveMax.com">Dave Max</a> | <a href="https://twitter.com/Dave_Max">@Dave_Max</a>
+      <p>by <a href="http://DaveMax.com">Dave Max</a> | <a href="https://twitter.com/govTrackr">@govTrackr</a>
       </p>
   </div>
 </footer>
