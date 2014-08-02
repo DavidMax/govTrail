@@ -42,7 +42,7 @@ angular.module('govTrackrApp')
 
 
  
-      var url = 'https://www.federalregister.gov/api/v1/articles.json?callback=JSON_CALLBACK&per_page=10&order=relevance&conditions[term]=' + $scope.searchTerm + '&conditions[agencies][]=' + $scope.agencyName + '&page=' + $scope.page;
+      var url = 'https://www.federalregister.gov/api/v1/articles.json?callback=JSON_CALLBACK&per_page=10&order=relevance&conditions[term]=' + $scope.searchTerm + '&conditions[agencies][]=' + $scope.agencyName + '&page=' + $scope.currentPage;
 
       $http.jsonp(url).success(function(data) {
     
@@ -59,9 +59,26 @@ angular.module('govTrackrApp')
       $scope.searchResults.results = results;
       $scope.searchResults.description = description;
 
+  $scope.totalItems = data.count;
+  $scope.currentPage = 1;
+
+  $scope.setPage = function (pageNo) {
+    $scope.currentPage = pageNo;
+    $scope.startSearch();
+  };
+
+  $scope.pageChanged = function() {
+           $scope.startSearch();
+    console.log('Page changed to: ' + $scope.currentPage);
+  };
+
+  $scope.maxSize = 5;
+  $scope.bigTotalItems = data.count;
+  $scope.bigCurrentPage = 1;
 
 
     });
   };
 });
+
 
