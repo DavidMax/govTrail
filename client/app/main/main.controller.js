@@ -9,6 +9,7 @@ angular.module('govTrackrApp')
     $scope.agencies = [];
     $scope.currentPage = 1;
     $scope.page = 1;
+    $scope.searchType = 1;
 
 // **obsolete** function for Next Page functionality
     $scope.nextPage = function() {
@@ -25,9 +26,43 @@ angular.module('govTrackrApp')
 
     });
 
-    console.log($scope.agencies);     
+  //  console.log($scope.agencies);     
 
     $scope.selectedAgency = 'Choose An Agency';
+
+
+
+
+
+    });
+
+    if ($scope.searchType == 2) {
+        
+var sunUrl = 'http://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.searchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40';
+        url = sunUrl;
+ 
+
+      $http.get(sunUrl).success(function(data) {
+    
+      $scope.sunlightSearch = data;
+
+      $scope.sunlightSearch.results = data.results[0];
+
+      console.log(data);
+      console.log(data.results);
+      console.log(data.results.official_title);
+
+      $scope.sunlightSearch.results.official_title = data.results.official_title;
+      $scope.sunlightSearch.results.official_title = data.results.official_title;
+
+
+      console.log(sunlightSearch.results.official_title);
+      console.log(sunlightSearch.results.bill_id)
+
+
+    });
+
+} else if (scope.searchType = 1) {
 
     $scope.startSearch = function() {
       
@@ -38,11 +73,13 @@ angular.module('govTrackrApp')
 
       $scope.agencyName = $scope.selectedAgency.substring(41, $scope.selectedAgency.length);
 
-      // URL for testing Sunlight Foundation API
-     // var sunURL = 'http://congress.api.sunlightfoundation.com/bills/search?query=FISA&apikey=b7caa92fa4364d9c961bcf7f950f5b40';
+
  
  // assemble query string with params
       var url = 'https://www.federalregister.gov/api/v1/articles.json?callback=JSON_CALLBACK&per_page=10&order=relevance&conditions[term]=' + $scope.searchTerm + '&conditions[agencies][]=' + $scope.agencyName + '&page=' + $scope.currentPage;
+
+
+      }
 
       $http.jsonp(url).success(function(data) {
     
