@@ -19,6 +19,7 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
+    "$scope": false,
     "jQuery": true,
     "angular": true,
     "console": true,
