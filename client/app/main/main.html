@@ -3,27 +3,25 @@
 <header class="hero-unit" id="banner">
     <div class="container">
         <h1>govTrail</h1>
-        <p class="lead">Search the U.S. Federal Register & Bills In The U.S. Congress</p>
-        <!--     <img src="assets/images/yeoman.png" alt="I'm Yeoman"> -->
+        <p class="lead">Search the U.S. Federal Register Database</p>
     </div>
 </header>
 
-<div class="container" ng-switch on="searchType">
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
 
+
             <h1 class="page-header">Search:</h1>
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="searchType" btn-radio="'1'" uncheckable>Federal Register</label>
-                <label class="btn btn-primary" ng-model="searchType" btn-radio="'2'" uncheckable>Bills In Congress</label>
-                <!--       <label class="btn btn-success" ng-model="radioModel" btn-radio="'Right'" uncheckable>Right</label> -->
-            </div>
-            <br>
+            <div ng-switch on="searchType">
 
-            <div id='federal' ng-switch-when="1">
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="searchType" btn-radio="'1'" uncheckable>Federal Register</label>
+                    <label class="btn btn-primary" ng-model="searchType" btn-radio="'2'" uncheckable>Bills In Congress</label>
+                </div>
+
+
                 <form ng-submit="startSearch()" role="form">
-
-
                     <div class="form-group">
                         <label for="searchTerm">Enter a term:</label>
                         <input type="text" ng-model="searchTerm" size="30" class="form-control" type="search" placeholder="Search The Federal Register">
@@ -33,80 +31,55 @@
                             <select ng-model="selectedAgency" ng-options="agency.url as agency.name for agency in agencies" class="form-control">
                                 <option value="">-- Choose An Agency --</option>
                             </select>
-                            <!--  {{selectedAgency | json}}  -->
-                         <!--    {{searchTerm}} -->
                         </span>
                         <br>
-                        <input class="btn-success" type="submit" value="Search">
+                        <input class="btn-primary" type="submit" value="Search">
                     </div>
                 </form>
             </div>
         </div>
+    </div>
 
-        <div id='bills' ng-switch-when="2">
-            <form ng-submit="sunlightSearch.searchBills()" role="form">
+    <div class="container" ng-show="searchPerformed">
 
+        <div class="row">
 
-                <div class="form-group">
-                    <label for="billSearchTerm">Enter a term:</label>
-                    <input type="text" ng-model="billSearchTerm" size="30" class="form-control" type="search" placeholder="Search Bills in Congress">
+            <div class="col-lg-12">
+                <span>
+                    <h2 class="page-header">Results:</span>
+                <span>
+                    <h4>{{searchResults.description}}</h4>
+                </span>
+                </h2>
+            </div>
 
-                    <br>
-                    <input class="btn-success" type="submit" value="Search">
-                </div>
-            </form>
-            <ul ng-repeat="result in sunlightSearch.billResults">
+            <ul ng-repeat="result in searchResults.results">
                 <li>
-                    <h5>{{result.official_title}}</h5>
-                    <p><a ng-href="{{result.urls.congress}}">View Bill ID {{result.bill_id}}</a>
-                    </p>
+                    <h5><a ng-href="{{result.html_url}}">{{result.title}}</a>
+                    </h5>
+                    <p>{{result.abstract}}</p>
+                    <p>Type: {{result.type}} | <a ng-href="{{result.html_url}}">View on the Web</a> | <a ng-href="{{result.pdf_url}}">View PDF</a> |
+                        <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrackr" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
+                            <script>
+                            ! function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (!d.getElementById(id)) {
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = "https://platform.twitter.com/widgets.js";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, "script", "twitter-wjs");
+                            </script>
+                        </span>
                 </li>
             </ul>
+
+            <div class="simplePagination">
+                <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="false" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
+                <pre>Page: {{currentPage}} / {{displayTotalFedRegPages}}</pre>
+            </div>
         </div>
-
-    </div>
-</div>
-
-<div class="container" ng-show="searchPerformed">
-
-    <div class="row">
-
-        <div class="col-lg-12">
-            <span>
-                <h2 class="page-header">Results:</span>
-            <span>
-                <h4>{{searchResults.description}}</h4>
-            </span>
-            </h2>
-        </div>
-
-        <ul ng-repeat="result in searchResults.results">
-            <li>
-                <h5><a ng-href="{{result.html_url}}">{{result.title}}</a>
-                </h5>
-                <p>{{result.abstract}}</p>
-                <p>Type: {{result.type}} | <a ng-href="{{result.html_url}}">View on the Web</a> | <a ng-href="{{result.pdf_url}}">View PDF</a> |
-                    <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrackr" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
-                        <script>
-                        ! function(d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (!d.getElementById(id)) {
-                                js = d.createElement(s);
-                                js.id = id;
-                                js.src = "https://platform.twitter.com/widgets.js";
-                                fjs.parentNode.insertBefore(js, fjs);
-                            }
-                        }(document, "script", "twitter-wjs");
-                        </script>
-                    </span>
-            </li>
-        </ul>
-
-        <div class="simplePagination">
-            <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="false" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
-            <pre>Page: {{currentPage}} / {{displayTotalFedRegPages}}</pre>
-        </div>
-
     </div>
 </div>
 </div>

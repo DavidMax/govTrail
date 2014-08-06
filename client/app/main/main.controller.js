@@ -12,11 +12,7 @@ angular.module('govTrackrApp')
         $scope.sunlightSearch = {};
         $scope.searchType = 1;
 
-        // **obsolete** function for Next Page functionality
-        $scope.nextPage = function() {
-            $scope.page++;
-            $scope.startSearch();
-        };
+        console.log($scope.searchTerm);
 
         // get list of agencies
         $http.jsonp('https://www.federalregister.gov/api/v1/agencies?callback=JSON_CALLBACK').success(function(data) {
@@ -59,6 +55,7 @@ angular.module('govTrackrApp')
 
             console.log('startSearch clicked');
             console.log($scope.searchTerm);
+            console.log($scope.selectedAgency);
 
             $scope.searchPerformed = true;
 
