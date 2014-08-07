@@ -34,17 +34,17 @@ angular.module('govTrackrApp')
             $scope.sunlight.searchPerformed = true;
 
             // URL for testing Sunlight Foundation API
-            var sunUrl = 'http://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40';
+            var sunUrl = 'http://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.sunlight.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40';
 
             $http.get(sunUrl).success(function(data) {
 
-                $scope.sunlight = data;
+                $scope.sunlight.billResults = data;
 
-                console.log(data);
-                console.log(data.results);
+                // console.log(data);
+                // console.log(data.results);
 
-                $scope.sunlight.billResults = data.results;
-                $scope.sunlight.billResults.official_title = data.results.official_title;
+                $scope.sunlight.billResults.results = data.results;
+                $scope.sunlight.billResults.results.official_title = data.results.official_title;
 
                 console.log($scope.sunlight.billResults);
 
@@ -80,9 +80,9 @@ angular.module('govTrackrApp')
 
                 $scope.federal.searchResults.results = results;
                 $scope.federal.searchResults.description = description;
-                $scope.federal.totalItems = data.count;
+                $scope.totalItems = data.count;
 
-                $scope.federal.displayTotalfederalPages = data.total_pages;
+                $scope.displayTotalfederalPages = data.total_pages;
 
                 $scope.setPage = function(pageNo) {
                     $scope.federal.currentPage = pageNo;
@@ -90,9 +90,9 @@ angular.module('govTrackrApp')
                     $scope.federal.startSearch();
                 };
 
-                $scope.federal.pageChanged = function() {
+                $scope.pageChanged = function() {
                     $scope.federal.startSearch();
-                    console.log('Page changed to: ' + $scope.federal.currentPage);
+                    console.log('Page changed to: ' + $scope.currentPage);
                 };
 
                 $scope.maxSize = 5;
