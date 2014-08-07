@@ -9,87 +9,90 @@ angular.module('govTrackrApp')
         $scope.agencies = [];
         $scope.currentPage = 1;
         $scope.page = 1;
-        $scope.sunlightSearch = {};
+        $scope.sunlight = {};
+        $scope.federal = {};
         $scope.searchType = 1;
 
-        console.log($scope.searchTerm);
+
+        console.log($scope.federal.searchTerm);
 
         // get list of agencies
         $http.jsonp('https://www.federalregister.gov/api/v1/agencies?callback=JSON_CALLBACK').success(function(data) {
 
-            $scope.agencies = data;
+            $scope.federal.agencies = data;
 
             console.log(data[0].description);
 
         });
 
-        console.log($scope.agencies);
+        console.log($scope.federal.agencies);
 
-        $scope.selectedAgency = 'Choose An Agency';
+        $scope.federal.selectedAgency = 'Choose An Agency';
 
-        $scope.sunlightSearch.searchBills = function() {
+        $scope.sunlight.searchBills = function() {
 
-            $scope.searchPerformed = true;
+            $scope.sunlight.searchPerformed = true;
 
             // URL for testing Sunlight Foundation API
             var sunUrl = 'http://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40';
 
             $http.get(sunUrl).success(function(data) {
 
-                $scope.sunlightSearch = data;
+                $scope.sunlight = data;
 
                 console.log(data);
                 console.log(data.results);
 
-                $scope.sunlightSearch.billResults = data.results;
-                $scope.sunlightSearch.billResults.official_title = data.results.official_title;
+                $scope.sunlight.billResults = data.results;
+                $scope.sunlight.billResults.official_title = data.results.official_title;
 
-                console.log($scope.sunlightSearch.billResults);
+                console.log($scope.sunlight.billResults);
 
             });
 
         };
 
 
-        $scope.startSearch = function() {
+        $scope.federal.startSearch = function() {
 
             console.log('startSearch clicked');
-            console.log($scope.searchTerm);
-            console.log($scope.selectedAgency);
+            console.log($scope.federal.searchTerm);
+            console.log($scope.federal.selectedAgency);
 
-            $scope.searchPerformed = true;
+            $scope.federal.searchPerformed = true;
 
-            $scope.agencyName = $scope.selectedAgency.substring(41, $scope.selectedAgency.length);
+            $scope.federal.agencyName = $scope.federal.selectedAgency.substring(41, $scope.federal.selectedAgency.length);
 
 
 
             // assemble query string with params
-            var url = 'https://www.federalregister.gov/api/v1/articles.json?callback=JSON_CALLBACK&per_page=10&order=relevance&conditions[term]=' + $scope.searchTerm + '&conditions[agencies][]=' + $scope.agencyName + '&page=' + $scope.currentPage;
+            var url = 'https://www.federalregister.gov/api/v1/articles.json?callback=JSON_CALLBACK&per_page=10&order=relevance&conditions[term]=' + $scope.federal.searchTerm + '&conditions[agencies][]=' + $scope.federal.agencyName + '&page=' + $scope.federal.currentPage;
 
             $http.jsonp(url).success(function(data) {
 
-                $scope.searchResults = data;
+                $scope.federal.searchResults = data;
 
                 var description = data.description;
                 var results = data.results;
 
                 console.log(description);
-                console.log($scope.searchResults);
+                console.log($scope.federal.searchResults);
 
-                $scope.searchResults.results = results;
-                $scope.searchResults.description = description;
-                $scope.totalItems = data.count;
+                $scope.federal.searchResults.results = results;
+                $scope.federal.searchResults.description = description;
+                $scope.federal.totalItems = data.count;
 
-                $scope.displayTotalFedRegPages = data.total_pages;
+                $scope.federal.displayTotalfederalPages = data.total_pages;
 
                 $scope.setPage = function(pageNo) {
-                    $scope.currentPage = pageNo;
-                    $scope.startSearch();
+                    $scope.federal.currentPage = pageNo;
+                    $scope.currentPage = $scope.federal.currentPage;
+                    $scope.federal.startSearch();
                 };
 
-                $scope.pageChanged = function() {
-                    $scope.startSearch();
-                    console.log('Page changed to: ' + $scope.currentPage);
+                $scope.federal.pageChanged = function() {
+                    $scope.federal.startSearch();
+                    console.log('Page changed to: ' + $scope.federal.currentPage);
                 };
 
                 $scope.maxSize = 5;
