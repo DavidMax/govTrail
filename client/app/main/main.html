@@ -65,7 +65,7 @@
                             </h5>
                             <p>{{result.abstract}}</p>
                             <p>Type: {{result.type}} | <a ng-href="{{result.html_url}}">View on the Web</a> | <a ng-href="{{result.pdf_url}}">View PDF</a> |
-                                <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrackr" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
+                                <span><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrail" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
                                     <script>
                                     ! function(d, s, id) {
                                         var js, fjs = d.getElementsByTagName(s)[0];
@@ -83,7 +83,7 @@
 
                     <div class="simplePagination">
                         <pagination total-items="totalItems" ng-model="federal.currentPage" max-size="maxSize" class="pagination-sm" boundary-links="false" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
-                        <!--     <pre>Page: {{federal.currentPage}} / {{federal.displayTotalFedRegPages}}</pre> -->
+                        <!-- <pre>Page: {{federal.currentPage}} / {{federal.displayTotalFedRegPages}} </pre> -->
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     <form ng-submit="sunlight.searchBills()" role="form">
                         <div class="form-group">
                             <label for="sunlight.billSearchTerm">Enter a term:</label>
-                            <input type="text" ng-model="sunlight.billSearchTerm" size="30" class="form-control" type="search" placeholder="Search The Federal Register">
+                            <input type="text" ng-model="sunlight.billSearchTerm" size="30" class="form-control" type="search" placeholder="Search Congressional Bills">
                             <br>
                             <input class="btn-primary" type="submit" value="Search">
                         </div>
@@ -135,6 +135,19 @@
                             </p>
                             <p>{{result.official_title}}</p>
                             <p>Sponsor: {{result.sponsor.title}}. {{result.sponsor.first_name}} {{result.sponsor.last_name}}</p>
+                            <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this bill in Congress:" data-lang="en">Tweet</a>
+                                    <script>
+                                    ! function(d, s, id) {
+                                        var js, fjs = d.getElementsByTagName(s)[0];
+                                        if (!d.getElementById(id)) {
+                                            js = d.createElement(s);
+                                            js.id = id;
+                                            js.src = "https://platform.twitter.com/widgets.js";
+                                            fjs.parentNode.insertBefore(js, fjs);
+                                        }
+                                    }(document, "script", "twitter-wjs");
+                                    </script>
+                                </div>
                         </li>
                     </ul>
 
