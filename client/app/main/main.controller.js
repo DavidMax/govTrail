@@ -66,7 +66,7 @@ angular.module('govTrackrApp')
 
 
             // assemble query string with params
-            var url = 'https://www.federalregister.gov/api/v1/articles.json?callback=JSON_CALLBACK&per_page=10&order=relevance&conditions[term]=' + $scope.federal.searchTerm + '&conditions[agencies][]=' + $scope.federal.agencyName + '&page=' + $scope.federal.currentPage;
+            var url = 'https://www.federalregister.gov/api/v1/articles.json?callback=JSON_CALLBACK&fields[]=title&fields[]=type&fields[]=abstract&fields[]=agency_names&fields[]=body_html_url&fields[]=cfr_references&fields[]=citation&fields[]=html_url&fields[]=pdf_url&fields[]=president&fields[]=publication_date&per_page=10&order=relevance&conditions[term]=' + $scope.federal.searchTerm + '&conditions[agencies][]=' + $scope.federal.agencyName + '&page=' + $scope.federal.currentPage;
 
             $http.jsonp(url).success(function(data) {
 
