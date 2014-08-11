@@ -66,21 +66,26 @@
                             <p>{{result.abstract}}</p>
                             <ul>
                                 <li>Administration: President {{result.president.name}}</li>
-                                <li>Publication Date: {{result.publication_date | date : longDate}} | Type: {{result.type}}</li>
-                                <li><a ng-href="{{result.html_url}}">View on the Web</a> | <a ng-href="{{result.pdf_url}}">View PDF</a>
-                                <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrail" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
-                                    <script>
-                                    ! function(d, s, id) {
-                                        var js, fjs = d.getElementsByTagName(s)[0];
-                                        if (!d.getElementById(id)) {
-                                            js = d.createElement(s);
-                                            js.id = id;
-                                            js.src = "https://platform.twitter.com/widgets.js";
-                                            fjs.parentNode.insertBefore(js, fjs);
-                                        }
-                                    }(document, "script", "twitter-wjs");
-                                    </script></div>
+                                <li>Publication Date: {{result.publication_date | date : longDate}}</li>
+                                <li>Type: {{result.type}}</li>
+                                <li>
+                                    <a ng-href="{{result.html_url}}">View on the Web</a> | <a ng-href="{{result.pdf_url}}">View PDF</a>
+                                </li>
                             </ul>
+                            <div>
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrail" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
+                                <script>
+                                ! function(d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (!d.getElementById(id)) {
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = "https://platform.twitter.com/widgets.js";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }
+                                }(document, "script", "twitter-wjs");
+                                </script>
+                            </div>
                     </ul>
 
                     <div class="simplePagination" ng-show='federal.searchResults.results'>
@@ -138,18 +143,18 @@
                             <p>{{result.official_title}}</p>
                             <p>Sponsor: {{result.sponsor.title}}. {{result.sponsor.first_name}} {{result.sponsor.last_name}}</p>
                             <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this bill in Congress:" data-lang="en">Tweet</a>
-                                    <script>
-                                    ! function(d, s, id) {
-                                        var js, fjs = d.getElementsByTagName(s)[0];
-                                        if (!d.getElementById(id)) {
-                                            js = d.createElement(s);
-                                            js.id = id;
-                                            js.src = "https://platform.twitter.com/widgets.js";
-                                            fjs.parentNode.insertBefore(js, fjs);
-                                        }
-                                    }(document, "script", "twitter-wjs");
-                                    </script>
-                                </div>
+                                <script>
+                                ! function(d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (!d.getElementById(id)) {
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = "https://platform.twitter.com/widgets.js";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }
+                                }(document, "script", "twitter-wjs");
+                                </script>
+                            </div>
                         </li>
                     </ul>
 
