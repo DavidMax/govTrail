@@ -7,5 +7,10 @@ angular.module('govTrackrApp')
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
-      });
+      // })
+      // .state('main.search', {
+      //   url: '/search',
+      //   templateUrl: 'app/main/main.search.html',
+      //   controller: 'FederalCtrl'
+    });
   });

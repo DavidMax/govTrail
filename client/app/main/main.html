@@ -1,11 +1,11 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+    <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
-    <div class="container">
-        <h1>govTrail</h1>
-        <p class="lead">Search the U.S. Federal Register Database</p>
-    </div>
-</header>
+    <header class="hero-unit" id="banner">
+        <div class="container">
+            <h1>govTrail</h1>
+            <p class="lead">Search the Congressional Record and the Federal Register</p>
+        </div>
+    </header>
 
 <div class="container" id="search-type">
     <div class="row">
@@ -18,6 +18,9 @@
     </div>
 </div>
 
+<!-- <a ui.sref="main.search">Search</a>
+
+<div ui-view class="span9 slide"></div> -->
 
 <div ng-switch on="searchType">
     <!-- begin switch 1 federal -->
@@ -144,6 +147,8 @@
                             </p>
                             <p>{{result.official_title}}</p>
                             <p>Sponsor: {{result.sponsor.title}}. {{result.sponsor.first_name}} {{result.sponsor.last_name}}</p>
+                            <p>Last vote: {{result.last_vote_at | date : longDate}}</p>
+                            <p>Chamber: {{result.chamber | uppercase}}</p>
                             <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this bill in Congress:" data-lang="en">Tweet</a>
                                 <script>
                                 ! function(d, s, id) {
