@@ -1,3 +1,62 @@
-<div class="col-md-12">
-This is the congress view.
-</div>
+<div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Search:</h1>
+                    <form ng-submit="sunlight.searchBills()" role="form">
+                        <div class="form-group">
+                            <label for="sunlight.billSearchTerm">Enter a term:</label>
+                            <input type="text" ng-model="sunlight.billSearchTerm" size="30" class="form-control" type="search" placeholder="Search Congressional Bills">
+                            <br>
+                            <input class="btn-primary" type="submit" value="Search">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container" ng-show="sunlight.searchPerformed">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span>
+                        <h2 class="page-header">Results:</h2>
+                    </span>
+                    <!--   <span>
+                        <h4>{{sunlight.billResults.description}}</h4>
+                    </span> -->
+
+
+
+                    <ul ng-repeat="result in sunlight.billResults.results">
+                        <li>
+                            <h5><a ng-href="{{result.urls.congress}}">{{result.bill_id}} - {{result.short_title}}</a>
+                            </h5>
+                            </p>
+                            <p>{{result.official_title}}</p>
+                            <p>Sponsor: {{result.sponsor.title}}. {{result.sponsor.first_name}} {{result.sponsor.last_name}}</p>
+                            <p>Last vote: {{result.last_vote_at | date : longDate}}</p>
+                            <p>Chamber: {{result.chamber | uppercase}}</p>
+                            <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this bill in Congress:" data-lang="en">Tweet</a>
+                                <script>
+                                ! function(d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (!d.getElementById(id)) {
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = "https://platform.twitter.com/widgets.js";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }
+                                }(document, "script", "twitter-wjs");
+                                </script>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="simplePagination">
+                        <pagination total-items="totalItems" ng-model="sunlight.page" max-size="maxSize" class="pagination-sm" boundary-links="false" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
+                        <!--                         <pre>Page: {{sunlight.page}} / {{sunlight.count}}</pre> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

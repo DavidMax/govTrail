@@ -3,8 +3,8 @@
 angular.module('govTrackrApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('federal', {
-        url: '/federal',
+      .state('main.federal', {
+        url: 'federal',
         templateUrl: 'app/federal/federal.html',
         controller: 'FederalCtrl'
       });
