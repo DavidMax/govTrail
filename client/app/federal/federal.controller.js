@@ -77,7 +77,7 @@ angular.module('govTrackrApp')
 
                 $scope.pageChanged = function() {
                     $scope.federal.startSearch();
-                    console.log('Page changed to: ' + $scope.currentPage);
+                    console.log($scope.currentPage);
                 };
 
                 $scope.maxSize = 5;

@@ -29,13 +29,13 @@
 
                     <ul ng-repeat="result in sunlight.billResults.results">
                         <li>
-                            <h5><a ng-href="{{result.urls.congress}}">{{result.bill_id}} - {{result.short_title}}</a>
-                            </h5>
-                            </p>
+                            <h5><a ng-href="{{result.urls.congress}}">{{result.bill_id}} - {{result.short_title}}</a></h5>
                             <p>{{result.official_title}}</p>
-                            <p>Sponsor: {{result.sponsor.title}}. {{result.sponsor.first_name}} {{result.sponsor.last_name}}</p>
-                            <p>Last vote: {{result.last_vote_at | date : longDate}}</p>
-                            <p>Chamber: {{result.chamber | uppercase}}</p>
+                            <ul>
+                                <li>Sponsor: {{result.sponsor.title}}. {{result.sponsor.first_name}} {{result.sponsor.last_name}}</li>
+                                <li>Last vote: {{result.last_vote_at | date : longDate}}</li>
+                                <li>Chamber: {{result.chamber | uppercase}}</li>
+                            </ul>
                             <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this bill in Congress:" data-lang="en">Tweet</a>
                                 <script>
                                 ! function(d, s, id) {
@@ -53,8 +53,8 @@
                     </ul>
 
                     <div class="simplePagination">
-                        <pagination total-items="totalItems" ng-model="sunlight.page" max-size="maxSize" class="pagination-sm" boundary-links="false" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
-                        <!--                         <pre>Page: {{sunlight.page}} / {{sunlight.count}}</pre> -->
+                         <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="false" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
+                        <pre>Page: {{sunlight.page}} / {{sunlight.count}}</pre>
                     </div>
                 </div>
             </div>
