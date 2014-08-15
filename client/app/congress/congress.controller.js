@@ -6,8 +6,9 @@ angular.module('govTrackrApp')
         // declare variables
 
         $scope.sunlight = {};
-        $scope.searchPerformed = false;
-       
+        $scope.sunlight.searchPerformed = false;
+        $scope.sunlight.currentPage = 1;
+
 
 
         var message = 'Using CongressCtrl controller module';
@@ -18,7 +19,7 @@ angular.module('govTrackrApp')
             $scope.sunlight.searchPerformed = true;
 
             // URL for Sunlight Foundation API
-            var sunUrl = 'http://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.sunlight.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=10' + '&page=' + $scope.currentPage;
+            var sunUrl = 'https://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.sunlight.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=10' + '&page=' + $scope.sunlight.currentPage;
 
             $http.get(sunUrl).success(function(data) {
 
@@ -32,21 +33,23 @@ angular.module('govTrackrApp')
 
                 console.log($scope.sunlight.billResults);
 
-                    // begin ui-bootstrap pagination code
+                // begin ui-bootstrap pagination code
 
-                      $scope.setPage = function (pageNo) {
-                        $scope.currentPage = pageNo;
-                      };
+                $scope.setPage = function(pageNo) {
+                    $scope.sunlight.currentPage = pageNo;
+                    console.log(pageNo);
+                    console.log($scope.currentPage);
+                };
 
-                      $scope.pageChanged = function() {
-                      //  $scope.sunlight.searchBills();
-                        console.log($scope.currentPage);
-                      };
+                $scope.pageChanged = function() {
+                    $scope.sunlight.searchBills();
+                    console.log($scope.sunlight.currentPage);
+                };
 
-                      $scope.maxSize = 5;
-                      $scope.totalItems = data.count;
-                      //$scope.currentPage = data.page.page; 
-                      
+                $scope.maxSize = 5;
+                $scope.totalItems = data.count;
+                //$scope.currentPage = data.page.page;
+
 
                 // end ui-boostrap pagination code  
 
@@ -54,5 +57,5 @@ angular.module('govTrackrApp')
 
 
         };
-// end controller module definition
+        // end controller module definition
     });

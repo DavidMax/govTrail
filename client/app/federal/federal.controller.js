@@ -4,14 +4,12 @@ angular.module('govTrackrApp')
     .controller('FederalCtrl', function($scope, $http) {
 
         // declare varialbles
-        $scope.searchPerformed = false;
-        $scope.searchResults = {};
-        $scope.agencies = [];
-        $scope.currentPage = 1;
-        $scope.page = 1;
         $scope.federal = {};
-        $scope.searchType = 1;
+        $scope.federal.searchPerformed = false;
+        $scope.federal.searchResults = {};
+        $scope.federal.agencies = [];
         $scope.federal.per_page = 10;
+        $scope.federal.currentPage = 1;
 
         $scope.singleModel = 1;
 
@@ -67,22 +65,20 @@ angular.module('govTrackrApp')
                 $scope.federal.searchResults.description = description;
                 $scope.totalItems = data.count;
 
-                $scope.displayTotalfederalPages = data.total_pages;
+                $scope.federal.displayTotalPages = data.total_pages;
 
                 $scope.setPage = function(pageNo) {
                     $scope.federal.currentPage = pageNo;
-                    $scope.currentPage = $scope.federal.currentPage;
                     $scope.federal.startSearch();
                 };
 
                 $scope.pageChanged = function() {
                     $scope.federal.startSearch();
-                    console.log($scope.currentPage);
+                    console.log($scope.federal.currentPage);
                 };
 
                 $scope.maxSize = 5;
-                $scope.bigTotalItems = data.count;
-                $scope.bigCurrentPage = 1;
+
 
             });
         };
