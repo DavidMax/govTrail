@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('govTrackrApp')
+angular.module('govTrailApp')
   .directive('mongooseError', function () {
     return {
       restrict: 'A',

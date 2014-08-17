@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('govTrackrApp', [
+angular.module('govTrailApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',

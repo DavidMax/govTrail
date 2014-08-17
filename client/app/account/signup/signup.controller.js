@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('govTrackrApp')
+angular.module('govTrailApp')
   .controller('SignupCtrl', function ($scope, Auth, $location) {
     $scope.user = {};
     $scope.errors = {};

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('govTrackrApp')
+angular.module('govTrailApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',

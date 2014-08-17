@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('govTrackrApp')
+angular.module('govTrailApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('main.congress', {

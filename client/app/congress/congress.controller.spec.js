@@ -3,7 +3,7 @@
 describe('Controller: CongressCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('govTrackrApp'));
+  beforeEach(module('govTrailApp'));
 
   var CongressCtrl, scope;
 

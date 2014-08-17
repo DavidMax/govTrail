@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('govTrackrApp')
+angular.module('govTrailApp')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
 
     $http.get('/api/users').success(function(users) {
