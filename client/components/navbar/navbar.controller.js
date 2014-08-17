@@ -5,7 +5,16 @@ angular.module('govTrackrApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }];
+    },
+    {
+      'title': 'Federal',
+      'link': '/federal'      
+    },
+    {
+      'title': 'Congress',
+      'link': '/congress'      
+    }    
+    ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
