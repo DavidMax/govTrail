@@ -1,12 +1,41 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<header class="hero-unit" id="banner">
+    <div class="container">
+        <h1>govTrail</h1>
+        <p class="lead">Search the Congressional Record and the Federal Register</p>
+    </div>
+</header>
+
+<div class="container" id="search-type">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-group">
+                <a ui-sref="federal">
+                    <label class="btn btn-primary" ng-model="searchType" btn-radio="'1'" uncheckable>Federal Register</label>
+                </a>
+                <a ui-sref="congress">
+                    <label class="btn btn-primary" ng-model="searchType" btn-radio="'2'" uncheckable>Bills In Congress</label>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div ui-view></div>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
+            <h2>Federal</h2>
+            <div ui-view></div>
             <h1 class="page-header">Search:</h1>
             <form ng-submit="federal.startSearch()" role="form">
                 <div class="form-group">
                     <label for="federal.searchTerm">Enter a term:</label>
                     <input type="text" ng-model="federal.searchTerm" size="30" class="form-control" type="search" placeholder="Search The Federal Register">
-                    <label for="federal.per_page">Results Per Page: {{federal.per_page}}</label><span class='search-field-warning'> *Results are limited to the first 50 pages</span>
+                    <label for="federal.per_page">Results Per Page: {{federal.per_page}}</label>
+                    <span class='search-field-warning'>*Results are limited to the first 50 pages</span>
                     <br>
                     <div class="btn-group">
                         <label class="btn btn-primary" ng-model="federal.per_page" btn-radio="10" uncheckable>10</label>

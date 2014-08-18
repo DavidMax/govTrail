@@ -9,7 +9,7 @@ angular.module('govTrailApp')
         controller: 'MainCtrl'
       })
       .state('main.search', {
-         url: '/search',
+         url: 'search',
          templateUrl: 'app/main/main-search.html',
          controller: 'MainCtrl'
     });

@@ -3,8 +3,8 @@
 angular.module('govTrailApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('main.congress', {
-        url: 'congress',
+      .state('congress', {
+        url: '/congress',
         templateUrl: 'app/congress/congress.html',
         controller: 'CongressCtrl'
       });

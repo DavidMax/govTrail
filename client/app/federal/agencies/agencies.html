@@ -1,0 +1,10 @@
+<span class="nullable">
+    <label for="federal.searchTerm">Choose an agency to search:</label>
+    <select ng-model="federal.selectedAgency" ng-options="agency.url as agency.name for agency in federal.agencies" class="form-control">
+        <option value="">-- Choose An Agency --</option>
+    </select>
+</span>
+<ul>
+    <li>{{agency.name}}</li>
+    <li>{{agency.url}}</li>
+</ul>
