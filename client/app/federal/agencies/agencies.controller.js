@@ -15,7 +15,7 @@ angular.module('govTrailApp')
 
             console.log($scope.federal.agencies);
 
-        	$scope.federal.selectedAgency = 'Choose An Agency';
+        	// $scope.federal.selectedAgency = 'Choose An Agency';
 
 		 });
 

@@ -5,104 +5,24 @@
         <p class="lead">Search the Congressional Record and the Federal Register</p>
     </div>
 </header>
-
+<!-- begin button group -->
 <div class="container" id="search-type">
     <div class="row">
         <div class="col-lg-12">
+            <h2>U.S. Federal Government</h2>
             <div class="btn-group">
-                <a ui-sref="federal">
+                <a ui-sref="federal.register">
                     <label class="btn btn-primary" ng-model="searchType" btn-radio="'1'" uncheckable>Federal Register</label>
                 </a>
-                <a ui-sref="congress">
-                    <label class="btn btn-primary" ng-model="searchType" btn-radio="'2'" uncheckable>Bills In Congress</label>
+                <a ui-sref="federal.agencies">
+                    <label class="btn btn-primary" ng-model="searchType" btn-radio="'2'" uncheckable>Agencies</label>
                 </a>
             </div>
         </div>
     </div>
 </div>
 
+<!-- end button group -->
 
-<div ui-view></div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <h2>Federal</h2>
-            <div ui-view></div>
-            <h1 class="page-header">Search:</h1>
-            <form ng-submit="federal.startSearch()" role="form">
-                <div class="form-group">
-                    <label for="federal.searchTerm">Enter a term:</label>
-                    <input type="text" ng-model="federal.searchTerm" size="30" class="form-control" type="search" placeholder="Search The Federal Register">
-                    <label for="federal.per_page">Results Per Page: {{federal.per_page}}</label>
-                    <span class='search-field-warning'>*Results are limited to the first 50 pages</span>
-                    <br>
-                    <div class="btn-group">
-                        <label class="btn btn-primary" ng-model="federal.per_page" btn-radio="10" uncheckable>10</label>
-                        <label class="btn btn-primary" ng-model="federal.per_page" btn-radio="20" uncheckable>20</label>
-                        <label class="btn btn-primary" ng-model="federal.per_page" btn-radio="50" uncheckable>50</label>
-                    </div>
-                    <br>
-                    <span class="nullable">
-                        <label for="federal.searchTerm">Choose an agency to search:</label>
-                        <select ng-model="federal.selectedAgency" ng-options="agency.url as agency.name for agency in federal.agencies" class="form-control">
-                            <option value="">-- Choose An Agency --</option>
-                        </select>
-                    </span>
-                    <br>
-                    <input class="btn-success" type="submit" value="Search">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<div class="container" ng-show="federal.searchPerformed">
-    <div class="row">
-        <div class="col-lg-12">
-            <span>
-                <h2 class="page-header">Results:</h2>
-            </span>
-            <span>
-                <h4>{{federal.searchResults.description}}</h4>
-            </span>
-
-
-
-            <ul ng-repeat="result in federal.searchResults.results">
-                <li>
-                    <h5><a ng-href="{{result.html_url}}">{{result.title}}</a>
-                    </h5>
-                    <p>{{result.abstract}}</p>
-                    <ul>
-                        <li>Administration: President {{result.president.name}}</li>
-                        <li>Publication Date: {{result.publication_date | date : longDate}}</li>
-                        <li>Type: {{result.type}}</li>
-                        <li>
-                            <a ng-href="{{result.html_url}}">View on the Web</a> | <a ng-href="{{result.pdf_url}}">View PDF</a>
-                        </li>
-                    </ul>
-                    <div>
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.html_url}}" data-via="govTrail" data-text="Found this Federal Register document:" data-lang="en">Tweet</a>
-                        <script>
-                        ! function(d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (!d.getElementById(id)) {
-                                js = d.createElement(s);
-                                js.id = id;
-                                js.src = "https://platform.twitter.com/widgets.js";
-                                fjs.parentNode.insertBefore(js, fjs);
-                            }
-                        }(document, "script", "twitter-wjs");
-                        </script>
-                    </div>
-            </ul>
-
-            <div class="simplePagination" ng-show='federal.searchResults.results'>
-                <pagination total-items="totalItems" ng-model="federal.currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
-                <pre>Page: {{federal.currentPage}} / {{federal.displayTotalPages}} </pre>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- <a ui-sref="federal.agencies">Agencies</a> -->
+ <div ui-view></div>

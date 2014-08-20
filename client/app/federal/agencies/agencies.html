@@ -1,10 +1,16 @@
-<span class="nullable">
-    <label for="federal.searchTerm">Choose an agency to search:</label>
-    <select ng-model="federal.selectedAgency" ng-options="agency.url as agency.name for agency in federal.agencies" class="form-control">
-        <option value="">-- Choose An Agency --</option>
-    </select>
-</span>
-<ul>
-    <li>{{agency.name}}</li>
-    <li>{{agency.url}}</li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+        	<h3 class="page-header">Search Federal Agencies:</h3>
+			<span class="nullable">
+			    <label for="federal.searchTerm">Choose an agency to search:</label>
+			    <select ng-model="federal.selectedAgency" ng-options="agency.url as agency.name for agency in federal.agencies" class="form-control">
+			        <option value="">-- Choose An Agency --</option>
+			    </select>
+			</span>
+			<ul ng-show="federal.selectedAgency">
+			    <li>Website: <a ng-href="{{federal.selectedAgency}}">{{federal.selectedAgency}}</a></li>
+			</ul>
+		</div>
+	</div>
+</div>			
