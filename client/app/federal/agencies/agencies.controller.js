@@ -15,20 +15,7 @@ angular.module('govTrailApp')
 
             console.log($scope.federal.agencies);
 
-        	// $scope.federal.selectedAgency = 'Choose An Agency';
-
 		 });
 
-       $scope.federal.startSearch = function() {
-
-            console.log('startSearch clicked');
-            console.log($scope.federal.searchTerm);
-            console.log($scope.federal.selectedAgency);
-
-            $scope.federal.searchPerformed = true;
-
-            $scope.federal.agencyName = $scope.federal.selectedAgency.substring(41, $scope.federal.selectedAgency.length);
-
-        };
         // end module definition        
     });    	
