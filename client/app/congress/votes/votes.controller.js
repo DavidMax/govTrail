@@ -19,7 +19,7 @@ angular.module('govTrailApp')
             $scope.sunlight.searchPerformed = true;
 
             // URL for Sunlight Foundation API
-            var sunUrl = 'https://congress.api.sunlightfoundation.com/votes?query=' + $scope.sunlight.voteSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=10' + '&page=' + $scope.sunlight.currentPage;
+            var sunUrl = 'https://congress.api.sunlightfoundation.com/votes?' + 'query=' + $scope.sunlight.voteSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=10' + '&page=' + $scope.sunlight.currentPage + '&fields=url,official_title,question,bill_id,chamber,congress,voted_at,roll_id,result,,required,breakdown.total';
 
             $http.get(sunUrl).success(function(data) {
 

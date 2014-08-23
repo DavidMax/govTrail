@@ -33,11 +33,18 @@
                     </h5>
                     <p>{{result.official_title}}</p>
                     <ul>
-                        <li>Result: {{result.result}}</li>
+
                         <li>Voted at: {{result.voted_at | date : longDate}}</li>
                         <li>Chamber: {{result.chamber | uppercase}}</li>
                         <li>Congress: {{result.congress}}</li>
                         <li>View: <a ng-href="{{result.url}}">Senate.gov Published Results</li>
+                        <li>Result: {{result.result}}</li>
+                        <li>Breakdown: 
+                            <ul>
+                                <li>Yea: {{result.breakdown.total.Yea}}</li>
+                                <li>Nay: {{result.breakdown.total.Nay}}</li>
+                            </ul>
+                        </li>    
                     </ul>
                     <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this vote by Congress:" data-lang="en">Tweet</a>
                             <script>
