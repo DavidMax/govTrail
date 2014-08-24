@@ -9,8 +9,6 @@ angular.module('govTrailApp')
         $scope.sunlight.searchPerformed = false;
         $scope.sunlight.currentPage = 1;
 
-
-
         var message = 'Using VotesCtrl controller module';
         console.log(message);
 
@@ -48,8 +46,6 @@ angular.module('govTrailApp')
 
                 $scope.maxSize = 5;
                 $scope.totalItems = data.count;
-                //$scope.currentPage = data.page.page;
-
 
                 // end ui-boostrap pagination code  
 

@@ -24,49 +24,58 @@
             <!--   <span>
                         <h4>{{sunlight.voteResults.description}}</h4>
                     </span> -->
-
-
-
             <ul ng-repeat="result in sunlight.voteResults.results">
                 <li>
                     <h5><a ng-href="{{result.url}}">{{result.bill_id}} - {{result.question}}</a>
                     </h5>
                     <p>{{result.official_title}}</p>
                     <ul>
-
                         <li>Voted at: {{result.voted_at | date : longDate}}</li>
                         <li>Chamber: {{result.chamber | uppercase}}</li>
                         <li>Congress: {{result.congress}}</li>
-                        <li>View: <a ng-href="{{result.url}}">Senate.gov Published Results</li>
+                        <li>View: <a ng-href="{{result.url}}">Senate.gov Published Results</a>
+                        </li>
                         <li>Result: {{result.result}}</li>
-                        <li>Breakdown: 
+                        <li>Required: {{result.required}}</li>
+                        <li>Breakdown:
                             <ul>
                                 <li>Yea: {{result.breakdown.total.Yea}}</li>
                                 <li>Nay: {{result.breakdown.total.Nay}}</li>
+                                <li>Not Voting: {{result.breakdown.total["Not Voting"]}}</li>
+                                <li>Present: {{result.breakdown.total.Present}}</li>
                             </ul>
-                        </li>    
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" style="width: {{(result.breakdown.total.Yea / (result.breakdown.total.Yea + result.breakdown.total.Nay + result.breakdown.total.Present)) * 100}}%">
+                                    <span class="sr-only">{{(result.breakdown.total.Yea / (result.breakdown.total.Yea + result.breakdown.total.Nay + result.breakdown.total["Not Voting"] + result.breakdown.total.Present)) * 100}}%</span>
+                                </div>
+                                <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 00%">
+                                    <span class="sr-only">20% Complete (warning)</span>
+                                </div>
+                                <div class="progress-bar progress-bar-danger" style="width: {{(result.breakdown.total.Nay / (result.breakdown.total.Yea + result.breakdown.total.Nay + result.breakdown.total.Present)) * 100}}%">
+                                    <span class="sr-only">{{(result.breakdown.total.No / (result.breakdown.total.Yea + result.breakdown.total.Nay + result.breakdown.total["Not Voting"] + result.breakdown.total.Present)) * 100}}%</span>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                     <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this vote by Congress:" data-lang="en">Tweet</a>
-                            <script>
-                            ! function(d, s, id) {
-                                var js, fjs = d.getElementsByTagName(s)[0];
-                                if (!d.getElementById(id)) {
-                                    js = d.createElement(s);
-                                    js.id = id;
-                                    js.src = "https://platform.twitter.com/widgets.js";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                }
-                            }(document, "script", "twitter-wjs");
-                            </script>
-        </div>
-        </li>
-        </ul>
-
-        <div class="simplePagination" ng-show="sunlight.voteResults.results">
-            <pagination total-items="totalItems" ng-model="sunlight.currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
-            <pre>Page: {{sunlight.currentPage}} / {{numPages}}</pre>
+                        <script>
+                        ! function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "https://platform.twitter.com/widgets.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, "script", "twitter-wjs");
+                        </script>
+                    </div>
+                </li>
+            </ul>
+            <div class="simplePagination" ng-show="sunlight.voteResults.results">
+                <pagination total-items="totalItems" ng-model="sunlight.currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
+                <pre>Page: {{sunlight.currentPage}} / {{numPages}}</pre>
+            </div>
         </div>
     </div>
-</div>
-</div>
 </div>
