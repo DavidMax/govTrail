@@ -13,6 +13,11 @@ angular.module('govTrailApp')
         templateUrl: 'app/congress/bills/bills.html',
         controller: 'BillsCtrl'
       })
+        .state('congress.legislators', {
+        url: '/legislators',
+        templateUrl: 'app/congress/legislators/locate.html',
+        controller: 'LocateCtrl'
+      })
         .state('congress.votes', {
         url: '/votes',
         templateUrl: 'app/congress/votes/votes.html',
