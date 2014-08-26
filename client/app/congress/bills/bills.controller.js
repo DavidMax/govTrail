@@ -8,6 +8,9 @@ angular.module('govTrailApp')
         $scope.sunlight = {};
         $scope.sunlight.searchPerformed = false;
         $scope.sunlight.currentPage = 1;
+        $scope.sunlight.per_page = 10;
+        $scope.sunlight.selectChamber = '';
+      
 
 
 
@@ -19,7 +22,7 @@ angular.module('govTrailApp')
             $scope.sunlight.searchPerformed = true;
 
             // URL for Sunlight Foundation API
-            var sunUrl = 'https://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.sunlight.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=10' + '&page=' + $scope.sunlight.currentPage;
+            var sunUrl = 'https://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.sunlight.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=' + $scope.sunlight.per_page + '&chamber=' + $scope.sunlight.selectChamber + '&page=' + $scope.sunlight.currentPage;
 
             $http.get(sunUrl).success(function(data) {
 

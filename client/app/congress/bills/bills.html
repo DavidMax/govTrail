@@ -6,8 +6,28 @@
                 <div class="form-group">
                     <label for="sunlight.billSearchTerm">Enter a term:</label>
                     <input type="text" ng-model="sunlight.billSearchTerm" size="30" class="form-control" type="search" placeholder="Search Congressional Bills">
+                    <!-- per page code -->
+                    <label for="sunlight.per_page">Results Per Page: {{federal.per_page}}</label>
+                    <!-- <span class='search-field-warning'>*Results are limited to the first 50 pages</span> -->
                     <br>
-                    <input class="btn-primary" type="submit" value="Search">
+                    <div class="btn-group">
+                        <label class="btn btn-primary" ng-model="sunlight.per_page" btn-radio="10" uncheckable>10</label>
+                        <label class="btn btn-primary" ng-model="sunlight.per_page" btn-radio="20" uncheckable>20</label>
+                        <label class="btn btn-primary" ng-model="sunlight.per_page" btn-radio="50" uncheckable>50</label>
+                    </div>
+                    <!-- end per page code -->
+                    <br>
+                    <!-- begin chamber code -->
+                    <label for="sunlight.selectChamber">Chamber</label>
+                    <br>
+                    <div class="btn-group">
+                        <label class="btn btn-primary" ng-model="sunlight.selectChamber" btn-radio="''" uncheckable>Both</label>
+                        <label class="btn btn-primary" ng-model="sunlight.selectChamber" btn-radio="'House'" uncheckable>House</label>
+                        <label class="btn btn-primary" ng-model="sunlight.selectChamber" btn-radio="'Senate'" uncheckable>Senate</label>
+                    </div>
+                    <br>
+                    <!-- end chamber code -->
+                    <input id="bill-submit" class="btn-primary" type="submit" value="Search">
                 </div>
             </form>
         </div>
@@ -54,7 +74,7 @@
             </ul>
 
             <div class="simplePagination" ng-show="sunlight.billResults">
-                <pagination total-items="totalItems" ng-model="sunlight.currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
+                <pagination total-items="totalItems" items-per-page="sunlight.per_page" ng-model="sunlight.currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
                 <pre>Page: {{sunlight.currentPage}} / {{numPages}}</pre>
             </div>
        </div>
