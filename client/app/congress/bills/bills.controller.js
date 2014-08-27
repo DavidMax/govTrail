@@ -5,34 +5,33 @@ angular.module('govTrailApp')
 
         // declare variables
 
+        //create empty sunlight object
         $scope.sunlight = {};
+        // init toggle searchPerformed to true
         $scope.sunlight.searchPerformed = false;
+        // init currentPage to 1 for ui-bootstrap pagination
         $scope.sunlight.currentPage = 1;
+        // init per_page for both API and pagination
         $scope.sunlight.per_page = 10;
+        //init chamber to empty string in case of 'Both' selected
         $scope.sunlight.selectChamber = '';
-      
 
+        console.log('Using CongressCtrl controller module');
 
-
-        var message = 'Using CongressCtrl controller module';
-        console.log(message);
-
+        // begin searchBills function code
         $scope.sunlight.searchBills = function() {
 
+            // toggle searchPerformed to true
             $scope.sunlight.searchPerformed = true;
 
-            // URL for Sunlight Foundation API
+            // Assemble query string with URL for Sunlight Foundation API
             var sunUrl = 'https://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.sunlight.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=' + $scope.sunlight.per_page + '&chamber=' + $scope.sunlight.selectChamber + '&page=' + $scope.sunlight.currentPage;
 
             $http.get(sunUrl).success(function(data) {
 
                 $scope.sunlight.billResults = data;
 
-                // console.log(data);
-                // console.log(data.results);
-
                 $scope.sunlight.billResults.results = data.results;
-                $scope.sunlight.billResults.results.official_title = data.results.official_title;
 
                 console.log($scope.sunlight.billResults);
 
@@ -51,15 +50,10 @@ angular.module('govTrailApp')
 
                 $scope.maxSize = 5;
                 $scope.totalItems = data.count;
-                //$scope.currentPage = data.page.page;
-
 
                 // end ui-boostrap pagination code  
-
             });
-
-
+            // end searchBills function code    
         };
-
         // end module definition        
     });

@@ -41,11 +41,6 @@
             <span>
                 <h2 class="page-header">Results:</h2>
             </span>
-            <!--   <span>
-                        <h4>{{sunlight.billResults.description}}</h4>
-                    </span> -->
-
-
 
             <ul ng-repeat="result in sunlight.billResults.results">
                 <li>
@@ -54,8 +49,13 @@
                     <p>{{result.official_title}}</p>
                     <ul>
                         <li>Sponsor: {{result.sponsor.title}}. {{result.sponsor.first_name}} {{result.sponsor.last_name}}</li>
-                        <li>Last vote: {{result.last_vote_at | date : longDate}}</li>
+                        <li ng-show="result.last_vote_at">Last vote: {{result.last_vote_at | date : longDate}}</li>
                         <li>Chamber: {{result.chamber | uppercase}}</li>
+                        <li>Congress: {{result.congress}}</li>
+                        <li>Introduced On: {{result.introduced_on | date : longDate}}</li>
+                        <li>Last Action At: {{result.last_action_at | date : longDate}}</li>
+                        <li>Last Version On: {{result.last_version_on | date : longDate}}</li>
+                        <li ng-show="result.enacted_as">Enacted As: {{result.enacted_as.law_type | uppercase}}</li>
                     </ul>
                     <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this bill in Congress:" data-lang="en">Tweet</a>
                         <script>
@@ -77,6 +77,6 @@
                 <pagination total-items="totalItems" items-per-page="sunlight.per_page" ng-model="sunlight.currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
                 <pre>Page: {{sunlight.currentPage}} / {{numPages}}</pre>
             </div>
-       </div>
+        </div>
     </div>
 </div>
