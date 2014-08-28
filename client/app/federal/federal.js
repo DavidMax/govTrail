@@ -17,5 +17,10 @@ angular.module('govTrailApp')
         url: '/register',
         templateUrl: 'app/federal/register/register.html',
         controller: 'RegisterCtrl'
+      })        
+        .state('federal.about', {
+        url: '/about',
+        templateUrl: 'app/federal/about-federal.html',
+        controller: 'FederalCtrl'
       });
   });

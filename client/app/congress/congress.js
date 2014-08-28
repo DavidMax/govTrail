@@ -22,5 +22,10 @@ angular.module('govTrailApp')
         url: '/votes',
         templateUrl: 'app/congress/votes/votes.html',
         controller: 'VotesCtrl'
+      })        
+        .state('congress.about', {
+        url: '/about',
+        templateUrl: 'app/congress/about-congress.html',
+        controller: 'CongressCtrl'
       });
   });

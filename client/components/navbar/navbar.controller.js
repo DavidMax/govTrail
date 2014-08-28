@@ -8,11 +8,11 @@ angular.module('govTrailApp')
     },
     {
       'title': 'Federal',
-      'link': '/federal'      
+      'link': '/federal/register'      
     },
     {
       'title': 'Congress',
-      'link': '/congress'      
+      'link': '/congress/bills'      
     }    
     ];
 
