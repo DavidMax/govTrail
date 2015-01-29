@@ -5,7 +5,8 @@ angular.module('govTrailApp', [
   'ngResource',
   'ngSanitize',
   'ui.bootstrap',
-  'ui.router'
+  'ui.router',
+  'firebase'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

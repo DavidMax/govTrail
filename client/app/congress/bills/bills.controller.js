@@ -1,9 +1,23 @@
 'use strict';
 
 angular.module('govTrailApp')
-    .controller('BillsCtrl', function($scope, $http) {
+    .controller('BillsCtrl', function($scope, $http, $firebase) {
+
+
 
         // declare variables
+
+        var SUNLIGHT_API_KEY = 'b7caa92fa4364d9c961bcf7f950f5b40';
+
+        $scope.queryString = '';
+
+        $scope.searchType = 'Congress';
+
+        $scope.predicate = '-searchTime';
+
+        var firebaseRef = new Firebase('https://govtrail.firebaseio.com/');
+
+        $scope.searches = $firebase(firebaseRef).$asArray();
 
         //create empty sunlight object
         $scope.sunlight = {};
@@ -24,10 +38,40 @@ angular.module('govTrailApp')
             // toggle searchPerformed to true
             $scope.sunlight.searchPerformed = true;
 
-            // Assemble query string with URL for Sunlight Foundation API
-            var sunUrl = 'https://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.sunlight.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=' + $scope.sunlight.per_page + '&chamber=' + $scope.sunlight.selectChamber + '&page=' + $scope.sunlight.currentPage;
+            $scope.search = {
+                congressQuery: {
+                    query: $scope.sunlight.billSearchTerm,
+                    chamber: $scope.sunlight.selectChamber,
+                    per_page: $scope.sunlight.per_page
+                },
+                
+                searchType: $scope.searchType,
+                searchTime: Firebase.ServerValue.TIMESTAMP
+                // ,resultCount: $scope.totalItems   
+            };
 
-            $http.get(sunUrl).success(function(data) {
+            $scope.searches.$add($scope.search);
+
+            for (var detail in $scope.search.congressQuery) {
+                $scope.queryString += "&" + detail + "=" + $scope.search.congressQuery[detail];
+                console.log($scope.queryString); 
+            }
+
+            var congressUrl = 'https://congress.api.sunlightfoundation.com/bills/search?' 
+                + 'apikey='
+                + SUNLIGHT_API_KEY 
+                + $scope.queryString
+                + '&page=' 
+                + $scope.sunlight.currentPage;
+
+             console.log(congressUrl);   
+
+            // $scope.searches.$add({searchTerm: $scope.sunlight.billSearchTerm, searchType: 'Congress', searchTime: Firebase.ServerValue.TIMESTAMP, resultPerPage: $scope.sunlight.per_page, chamber: $scope.sunlight.selectChamber});
+
+            // Assemble query string with URL for Sunlight Foundation API
+             // var sunUrl = 'https://congress.api.sunlightfoundation.com/bills/search?query=' + $scope.sunlight.billSearchTerm + '&apikey=b7caa92fa4364d9c961bcf7f950f5b40' + '&per_page=' + $scope.sunlight.per_page + '&chamber=' + $scope.sunlight.selectChamber + '&page=' + $scope.sunlight.currentPage;
+
+            $http.get(congressUrl).success(function(data) {
 
                 $scope.sunlight.billResults = data;
 
@@ -50,6 +94,8 @@ angular.module('govTrailApp')
 
                 $scope.maxSize = 5;
                 $scope.totalItems = data.count;
+
+                console.log($scope.totalItems);
 
                 // end ui-boostrap pagination code  
             });

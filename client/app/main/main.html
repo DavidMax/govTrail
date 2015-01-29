@@ -3,8 +3,8 @@
 <!-- begin main page content -->
 <header class="hero-unit" id="banner">
     <div class="container">
-        <h1>govTrail</h1>
-        <p class="lead">Search the Congressional Record and the Federal Register</p>
+        <h2>govTrail</h2>
+<!--         <p class="lead">Search the Congressional Record and the Federal Register</p> -->
     </div>
 </header>
 
@@ -19,75 +19,46 @@
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-        <div class="col-lg-4">
-            <img class="img-circle" src="assets/images/wh-bw-140x140.gif" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-            <h2>Federal</h2>
+        <div class="col-xs-12">
+            <img class="img-circle pull-left" src="assets/images/wh-bw-140x140.gif" alt="Generic placeholder image" style="width: 60px; height: 60px; margin: 10px;">
+            <h4>Federal</h4>
             <p>The Federal Register is the "diary" of the U.S. Federal Government. GovTrail lets you search the entire dataset.</p>
             <p><a class="btn btn-default" href="/federal" role="button">View details &raquo;</a>
             </p>
         </div>
         <!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle" src="assets/images/capitol-bw-140x140.gif" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-            <h2>Congress</h2>
-            <p>Thanks to the Sunlight Foundation govTrail is able to let you search through the inner workings of the U.S. Congress including bills, votes, and elected office holders.</p>
-            <p><a class="btn btn-default" href="/congress" role="button">View details &raquo;</a>
-            </p>
+        <div class="col-xs-12">
+            <img class="img-circle pull-left" src="assets/images/capitol-bw-140x140.gif" alt="Generic placeholder image" style="width: 60px; height: 60px; margin: 10px;">
+                <h4>Congress</h4>
+                <p>Thanks to the Sunlight Foundation govTrail is able to let you search through the inner workings of the U.S. Congress including bills, votes, and elected office holders.</p>
+                <p><a class="btn btn-default" href="/congress" role="button">View details &raquo;</a>
+                </p>
         </div>
-        <!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle" src="assets/images/flag-140x140.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-            <h2>Data Visualizations</h2>
-            <p>Sometimes we need to see data to understand it. govTrail has created some data visualizations the we think will help you better understand the U.S. Government and the world we live in.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a>
-            </p>
-        </div>
-        <!-- /.col-lg-4 -->
+
     </div>
-    <!-- /.row -->
 
+  <div class="row">
+    <div class="col-xs-12">
+        <h4>Recent Searches:</h4>
+  <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Search Term</th>
+            <th>Origin</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="search in searches | orderBy:predicate:reverse">
+            <td>{{search.congressQuery.query}}</td>
+            <td>{{search.congressQuery.chamber}}</td>
+            <td>{{search.searchTime | date:'short'}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
 
-    <!-- START THE FEATURETTES -->
-
-    <!--  <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-        <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
- -->
-    <!-- /END THE FEATURETTES -->
 
     <!-- end main page content -->
 
