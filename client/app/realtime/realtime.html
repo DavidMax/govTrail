@@ -1,0 +1,38 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<header class="hero-unit" id="banner">
+    <div class="container">
+        <h1>govTrail</h1>
+        <p class="lead">Collaborate with other Data Journalists in real time.</p>
+    </div>
+</header>
+<!-- begin button group -->
+<div class="container gt-wrapper gt-full-wrapper" id="search-type">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Recent Searches</h2>
+			  <div class="table-responsive">
+			    <table class="table table-striped">
+			        <thead>
+			          <tr>
+			            <th>Search Term</th>
+			            <th>Origin</th>
+			            <th>Time</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <tr ng-repeat="search in searches | orderBy:predicate:reverse">
+			            <td>{{search.congressQuery.query}}</td>
+			            <td>{{search.congressQuery.chamber}}</td>
+			            <td>{{search.searchTime | date:'short'}}</td>
+			          </tr>
+			        </tbody>
+			    </table>
+  			</div>
+        </div>
+    </div>
+</div>
+
+<!-- end button group -->
+
+<!-- <a ui-sref="federal.agencies">Agencies</a> -->
+ <div ui-view></div>

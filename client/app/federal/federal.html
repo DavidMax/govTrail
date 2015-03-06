@@ -1,0 +1,33 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<header class="hero-unit" id="banner">
+    <div class="container">
+        <h1>govTrail</h1>
+        <p class="lead">Search the Congressional Record and the Federal Register</p>
+    </div>
+</header>
+<!-- begin button group -->
+
+<div class="container gt-wrapper gt-top-wrapper" id="search-type">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Search The Federal Register</h2>
+            <div class="btn-group">
+                <a ui-sref="federal.register">
+                    <label class="btn btn-default btn-sm" ng-model="searchType" btn-radio="'1'" uncheckable>Federal Register</label>
+                </a>
+                <a ui-sref="federal.agencies">
+                    <label class="btn btn-default btn-sm" ng-model="searchType" btn-radio="'2'" uncheckable>Agencies</label>
+                </a>
+<!--                     <a ui-sref="federal.about">
+                        <label class="btn btn-default btn-sm" ng-model="searchType" btn-radio="'3'" uncheckable>About</label>
+                    </a> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end button group -->
+
+<!-- <a ui-sref="federal.agencies">Agencies</a> -->
+ <div ui-view></div>

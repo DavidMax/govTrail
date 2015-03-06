@@ -1,0 +1,82 @@
+<div class="container gt-wrapper gt-bottom-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Search Bills In Congress:</h3>
+            <form ng-submit="sunlight.searchBills()" role="form">
+                <div class="form-group form-group-sm">
+                    <label for="term">Enter a term:</label>
+                    <input type="text" ng-model="sunlight.billSearchTerm" class="form-control input-sm" type="search" placeholder="Search Congressional Bills" id="term">
+                    <!-- per page code -->
+                    <label for="sunlight.per_page" class="gt-form-item">Results Per Page: {{federal.per_page}}</label>
+                    <!-- <span class='search-field-warning'>*Results are limited to the first 50 pages</span> -->
+                    <br>
+                    <div class="btn-group" class="gt-form-item">
+                        <label class="btn btn-default btn-xs" ng-model="sunlight.per_page" btn-radio="10" uncheckable>10</label>
+                        <label class="btn btn-default btn-xs" ng-model="sunlight.per_page" btn-radio="20" uncheckable>20</label>
+                        <label class="btn btn-default btn-xs" ng-model="sunlight.per_page" btn-radio="50" uncheckable>50</label>
+                    </div>
+                    <!-- end per page code -->
+                    <br>
+                    <!-- begin chamber code -->
+                    <label for="sunlight.selectChamber" class="gt-form-item">Chamber:</label>
+                    <br>
+                    <div class="btn-group">
+                        <label class="btn btn-default btn-xs" ng-model="sunlight.selectChamber" btn-radio="''" uncheckable>Both</label>
+                        <label class="btn btn-default btn-xs" ng-model="sunlight.selectChamber" btn-radio="'House'" uncheckable>House</label>
+                        <label class="btn btn-default btn-xs" ng-model="sunlight.selectChamber" btn-radio="'Senate'" uncheckable>Senate</label>
+                    </div>
+                    <!-- end chamber code -->
+                    <br>
+                    <input id="bill-submit" class="btn-default btn-xs gt-form-item" type="submit" value="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container gt-wrapper gt-full-wrapper" ng-show="sunlight.searchPerformed">
+    <div class="row">
+        <div class="col-lg-12">
+            <span>
+                <h2 class="page-header">Results:</h2>
+            </span>
+
+            <ul ng-repeat="result in sunlight.billResults.results">
+                <li>
+                    <h5><a ng-href="{{result.urls.congress}}">{{result.bill_id}} - {{result.short_title}}</a>
+                    </h5>
+                    <p>{{result.official_title}}</p>
+                    <ul>
+                        <li>Sponsor: {{result.sponsor.title}}. {{result.sponsor.first_name}} {{result.sponsor.last_name}}</li>
+                        <li ng-show="result.last_vote_at">Last vote: {{result.last_vote_at | date : longDate}}</li>
+                        <li>Chamber: {{result.chamber | uppercase}}</li>
+                        <li>Congress: {{result.congress}}</li>
+                        <li>Introduced On: {{result.introduced_on | date : longDate}}</li>
+                        <li>Last Action At: {{result.last_action_at | date : longDate}}</li>
+                        <li>Last Version On: {{result.last_version_on | date : longDate}}</li>
+                        <li ng-show="result.enacted_as">Enacted As: {{result.enacted_as.law_type | uppercase}}</li>
+                    </ul>
+                    <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="Found this bill in Congress:" data-lang="en">Tweet</a>
+                        <script>
+                        ! function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "https://platform.twitter.com/widgets.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, "script", "twitter-wjs");
+                        </script>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="simplePagination" ng-show="sunlight.billResults">
+                <pagination total-items="totalItems" items-per-page="sunlight.per_page" ng-model="sunlight.currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="true" num-pages="numPages" ng-change="pageChanged()"></pagination>
+                <pre>Page: {{sunlight.currentPage}} / {{numPages}}</pre>
+            </div>
+        </div>
+    </div>
+</div>

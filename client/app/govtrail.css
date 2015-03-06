@@ -1,0 +1,42 @@
+.gt-wrapper {
+	background-color: #fff;
+}
+
+
+.gt-top-wrapper {
+	background-color: #fff;
+	border-color: #ddd;
+	border-width: 1px;
+	border-radius: 7px 7px 0px 0px;
+	margin-top: 20px;
+}
+
+.gt-bottom-wrapper {
+	background-color: #fff;
+	border-color: #ddd;
+	border-width: 1px;
+	border-radius: 0px 0px 7px 7px;
+	padding-bottom: 20px;
+}
+
+.gt-full-wrapper {
+	background-color: #fff;
+	border-color: #ddd;
+	border-width: 1px;
+	border-radius: 7px 7px 7px 7px;
+	padding-bottom: 20px;
+	margin-top: 20px;
+}
+
+.hero-unit {
+   background-image: url('/assets/images/banner-bg-a71.jpg');
+}
+
+.gt-form-item {
+	margin-top: 10px;
+}
+
+body {
+	background-color: #DCDCDC;
+}
+

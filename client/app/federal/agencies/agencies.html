@@ -1,0 +1,20 @@
+<div class="container gt-wrapper gt-bottom-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>View Federal Agency Details:</h3>
+            <span class="nullable">
+                <label for="federal.searchTerm">Choose an agency to view:</label>
+                <select ng-model="federal.selectedAgency" ng-options="agency.name for agency in federal.agencies" class="form-control input-sm">
+                    <option value="">-- Choose An Agency --</option>
+                </select>
+            </span>
+            <div ng-show="federal.selectedAgency.name gt-wrapper gt-full-wrapper">
+                <h3><a ng-href="{{federal.selectedAgency.url}}">{{federal.selectedAgency.name}}</a>
+                </h3>
+                <p>{{federal.selectedAgency.description}}</p>
+                <p ng-show="federal.selectedAgency.url">Federal Register Page: <a ng-href="{{federal.selectedAgency.url}}">{{federal.selectedAgency.url}}</a>
+                </p> 
+            </div>
+        </div>
+    </div>
+</div>

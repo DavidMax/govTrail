@@ -1,0 +1,64 @@
+<div class="container gt-wrapper gt-bottom-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Find Your Local Lesgislators:</h3>
+            <form ng-submit="sunlight.locateLegislators()" role="form">
+                <div class="form-group">
+                    <label for="sunlight.zip">Enter Your 5 Digit ZIP Code:</label>
+                    <input type="text" ng-model="sunlight.zip" size="30" class="form-control input-sm" type="search" placeholder="Enter Your 5 Digit ZIP Code">
+                    <br>
+                    <input class="btn-default btn-xs" type="submit" value="Search">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container gt-wrapper gt-full-wrapper" ng-show="sunlight.searchPerformed">
+    <div class="row">
+        <div class="col-lg-12">
+            <span>
+                <h2 class="page-header">Results:</h2>
+            </span>
+            <ul ng-repeat="result in sunlight.locateResults.results">
+                <li>
+                    <h5><a ng-href="{{result.website}}">{{result.title}}. {{result.first_name}} {{result.middle_name}} {{result.last_name}}</a>
+                    </h5>
+                    <p>Email: <a ng-href="mailto:{{result.oc_email}}">{{result.oc_email}}</a>
+                    </p>
+                    <p>Phone: {{result.phone}}</p>
+                    <ul>
+                        <li>Party: {{result.party}}</li>
+                        <li>Chamber: {{result.chamber | uppercase}}</li>
+                        <li>Term Start: {{result.term_start | date : longDate}}</li>
+                        <li>Term End: {{result.term_end | date : longDate}}</li>
+                        <li>Office: {{result.office}}</li>
+                        <li><a ng-href="{{result.contact_form}}">Contact Form</a>
+                        </li>
+                        <li>Website: <a ng-href="{{result.website}}">{{result.website}}</a>
+                        </li>
+                        <li ng-show="{{result.twitter_id}}">Twitter: <a ng-href="https://twitter.com/{{result.twitter_id}}">@{{result.twitter_id}}</a>
+                        </li>
+                        <li ng-show="{{result.youtube_id}}">YouTube: <a ng-href="https://www.youtube.com/user/{{result.youtube_id}}">{{result.youtube_id}}</a>
+                        </li>
+                        <li ng-show="{{result.facebook_id}}">Facebook ID: <a ng-href="https://www.facebook.com/{{result.facebook_id}}">{{result.facebook_id}}</a>
+                        </li>
+                    </ul>
+                    <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="{{result.urls.congress}}" data-via="govTrail" data-text="I found my local Congressman, {{result.title}}. {{result.first_name}} {{result.middle_name}} {{result.last_name}}" data-lang="en">Tweet</a>
+                        <script>
+                        ! function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "https://platform.twitter.com/widgets.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, "script", "twitter-wjs");
+                        </script>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
